@@ -1,0 +1,4 @@
+_base_: ../graph/cohort_graph.yaml
+experiment:
+  id: EXP04
+  question: "Do graph-derived cohort features add signal beyond tabular features?"

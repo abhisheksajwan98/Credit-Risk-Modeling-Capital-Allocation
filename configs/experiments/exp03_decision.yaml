@@ -1,0 +1,8 @@
+_base_: ../simulation/base.yaml
+experiment:
+  id: EXP03
+  question: "Does expected-loss/profit optimisation beat a fixed PD threshold?"
+  # Run under an unconstrained balance sheet: this isolates the decision rule from
+  # the capital-rationing effect that EXP06 studies.
+simulation:
+  capital_budget: null

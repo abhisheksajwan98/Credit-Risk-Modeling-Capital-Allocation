@@ -1,0 +1,35 @@
+# LightGBM. One boosting framework only -- see docs/PROJECT_SPEC.md section 4.
+model:
+  type: lightgbm
+  objective: binary
+  metric: binary_logloss     # log-loss, not AUC: the decision layer consumes probabilities
+  learning_rate: 0.03
+  num_leaves: 31
+  min_child_samples: 200
+  subsample: 0.8
+  subsample_freq: 1
+  colsample_bytree: 0.8
+  reg_alpha: 0.1
+  reg_lambda: 1.0
+  n_estimators: 3000
+  early_stopping_rounds: 100
+  class_weight: null
+
+search:
+  enabled: true
+  n_trials: 15               # deliberately small; a large sweep just overfits the valid window
+
+features:
+  feature_set: primary
+  include_vintage_sensitive: true
+  include_late_additions: false
+  include_joint: false
+  include_derived: true
+  availability_shift_tolerance: 0.05
+  max_categorical_levels: 40
+
+calibration:
+  methods: [identity, platt, isotonic]
+  fit_on: valid
+
+seed: 42

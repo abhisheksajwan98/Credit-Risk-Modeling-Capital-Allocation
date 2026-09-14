@@ -1,0 +1,52 @@
+{
+  "budget": 1922008880.0,
+  "flag_quantile": 0.9,
+  "n_flagged": 53666,
+  "portfolios": [
+    {
+      "policy": "A_pd_ranked",
+      "n_loans": 131570,
+      "capital_deployed": 1921989925.0,
+      "observed_profit": 156971329.37638226,
+      "return_on_capital": 0.08167125505425439,
+      "default_rate": 0.17302576575207115,
+      "mean_apr": 0.13266341035190393,
+      "budget_utilisation": 0.9999901379227759
+    },
+    {
+      "policy": "B_blindspot_aware",
+      "n_loans": 133378,
+      "capital_deployed": 1890596825.0,
+      "observed_profit": 153764315.59368113,
+      "return_on_capital": 0.08133109796885496,
+      "default_rate": 0.16322032119240054,
+      "mean_apr": 0.12657379103000496,
+      "budget_utilisation": 0.9836566545936042
+    },
+    {
+      "policy": "C_exposure_capped",
+      "n_loans": 148186,
+      "capital_deployed": 1922002962.5,
+      "observed_profit": 156621515.8686607,
+      "return_on_capital": 0.08148869638834425,
+      "default_rate": 0.16787685746291822,
+      "mean_apr": 0.1292506032958579,
+      "budget_utilisation": 0.9999969211900832
+    }
+  ],
+  "n_swapped_out": 26541,
+  "n_swapped_in": 28349,
+  "swapped_out_return": 0.07686315882867559,
+  "swapped_in_return": 0.07476189365236165,
+  "cashflow_model": {
+    "good_slope": 1.3512258459896551,
+    "good_intercept": -0.0007928498347327377,
+    "bad_slope": -0.3719344086549998,
+    "bad_intercept": 0.3532005434462575,
+    "n_good": 208809,
+    "n_bad": 30288,
+    "observed_lgd_mean": 0.5181314706974557,
+    "observed_lgd_median": 0.5322395941060878,
+    "notes": {}
+  }
+}

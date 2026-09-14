@@ -1,0 +1,18 @@
+_base_: ../models/boosting.yaml
+experiment:
+  id: EXP10
+  question: "Does disagreement between a tabular and a graph-augmented model flag unreliable PDs?"
+  # The alternative model must differ from the baseline in FEATURES ONLY. Differing in
+  # hyper-parameters or calibrator as well would make "disagreement" partly a measure of
+  # those choices rather than of the graph information.
+
+disagreement:
+  # Measured on the log-odds scale. An absolute probability difference is mechanically
+  # larger in the middle of the PD range, so it partly restates the PD level.
+  scale: logodds        # logodds | probability
+  match_baseline_calibrator: true
+
+analysis:
+  n_bins: 5
+  n_strata: 10
+  min_per_half: 200

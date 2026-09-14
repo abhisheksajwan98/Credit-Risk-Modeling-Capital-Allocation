@@ -1,0 +1,21 @@
+_base_: ../models/boosting.yaml
+experiment:
+  id: EXP08
+  question: "Does autoencoder reconstruction error identify borrowers whose PD is untrustworthy?"
+  # The marginal quintile table is descriptive only. The claim rests on the *conditional*
+  # test: within a PD stratum, does a high anomaly score still predict that the model
+  # under-states risk? Both are reported; only the second is evidence.
+
+autoencoder:
+  hidden_dims: [64, 32]
+  latent_dim: 16
+  epochs: 100
+  patience: 10
+  learning_rate: 0.001
+  batch_size: 256
+  dropout: 0.1
+
+analysis:
+  n_bins: 5
+  n_strata: 10          # PD deciles for the conditional test
+  min_per_half: 200

@@ -1,0 +1,34 @@
+# Time-respecting cohort graph. Full rationale in docs/GRAPH_DESIGN.md.
+
+relations:
+  - name: zip3
+    key_column: zip3
+    max_neighbours: 10
+    lookback_months: 36
+    min_cohort_size: 2
+  - name: emp
+    key_column: emp_norm
+    max_neighbours: 10
+    lookback_months: 36
+    min_cohort_size: 2
+
+cohort_features:
+  lookback_months: 36
+  smoothing_alpha: 25.0        # empirical-Bayes pseudo-count toward the portfolio prior
+  feature_columns: [fico_mid, dti_clean, loan_amnt, annual_inc]
+
+gnn:
+  hidden_dim: 64
+  embed_dim: 32
+  n_layers: 2                  # 3+ hops over-smooths on a cohort graph
+  dropout: 0.2
+  fanout: [10, 5]
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  batch_size: 1024
+  max_epochs: 30
+  patience: 5
+  l2_normalize: true
+  balance_classes: false       # preserves calibration; see models/gnn.py
+  device: auto                 # CUDA when present, CPU otherwise
+  seed: 42

@@ -1,0 +1,34 @@
+# LendingClub data preparation.
+# Every choice here is argued in docs/DATASET.md and docs/LEAKAGE.md.
+
+dataset:
+  name: lending_club
+  kaggle_ref: wordsforthewise/lending-club
+  licence: "CC0: Public Domain"
+  files:
+    accepted: accepted_2007_to_2018Q4.csv.gz
+    rejected: rejected_2007_to_2018Q4.csv.gz
+  download_rejected: false      # only needed for the selection-bias analysis
+
+population:
+  # One term only, so every loan has an identical outcome horizon and there is no
+  # censoring and no term-mix confound between vintages.
+  term_months: 36
+  chunksize: 250000
+
+splits:
+  # Out-of-time throughout. Never random: a random split lets the model see the future
+  # of the same credit cycle.
+  history: {start: "2007-06", end: "2009-12"}   # graph predecessors only, never modelled
+  train:   {start: "2010-01", end: "2014-06"}
+  valid:   {start: "2014-07", end: "2014-12"}   # early stopping, calibration, thresholds
+  test:    {start: "2015-01", end: "2015-12"}   # evaluated once
+  monitor: {start: "2016-01", end: "2018-12"}   # unlabelled production traffic
+
+synthetic:
+  # Used only when the real download is unavailable. Results are never reported.
+  n_loans: 200000
+  seed: 20260826
+  zip_effect_sd: 0.18
+  emp_effect_sd: 0.12
+  vintage_drift_per_year: 0.10

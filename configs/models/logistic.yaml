@@ -1,0 +1,25 @@
+# Interpretable banking-style baseline.
+model:
+  type: logistic
+  C: 0.1
+  penalty: l2
+  solver: lbfgs
+  max_iter: 2000
+  # null preserves the natural base rate and therefore the calibration.
+  # "balanced" is available so EXP01 can measure what re-weighting costs.
+  class_weight: null
+
+features:
+  feature_set: primary            # primary | with_lc_grade
+  include_vintage_sensitive: true
+  include_late_additions: false
+  include_joint: false
+  include_derived: true
+  availability_shift_tolerance: 0.05
+  max_categorical_levels: 40
+
+calibration:
+  methods: [identity, platt, isotonic]
+  fit_on: valid
+
+seed: 42

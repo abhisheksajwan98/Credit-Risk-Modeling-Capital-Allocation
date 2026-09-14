@@ -1,0 +1,106 @@
+{
+  "prepare": {
+    "rows": 25000,
+    "n_features": 20,
+    "default_rate": 0.1086,
+    "split_counts": {
+      "train": 16201,
+      "test": 5009,
+      "valid": 3790
+    },
+    "sentinel_rows_fixed": 4546,
+    "notes": [
+      "DAYS_EMPLOYED == 365243 on 4,546 rows: replaced with NaN plus an explicit indicator. Left as-is it encodes a 1000-year employment history.",
+      "Splits are RANDOM, not out-of-time. Home Credit contains no absolute calendar date, so a temporal split is impossible. Metrics from this adapter are therefore optimistic relative to deployment and are not comparable with the LendingClub results."
+    ]
+  },
+  "models": {
+    "logistic": {
+      "n": 5009,
+      "positive_rate": 0.10840487123178279,
+      "mean_prediction": 0.1071897694080995,
+      "roc_auc": 0.6996620259146454,
+      "pr_auc": 0.2326488390461069,
+      "gini": 0.39932405182929087,
+      "ks": 0.31218521111834124,
+      "brier": 0.09106609160587582,
+      "log_loss": 0.31724831905611894,
+      "ece": 0.016106479023357094,
+      "mce": 0.04869888556576568,
+      "calibration_slope": 0.9657512584375394,
+      "calibration_intercept": -0.05213043172488013,
+      "observed_expected_ratio": 0.9887910772839235,
+      "extras": {}
+    },
+    "lightgbm": {
+      "n": 5009,
+      "positive_rate": 0.10840487123178279,
+      "mean_prediction": 0.1074173294816703,
+      "roc_auc": 0.6976783456589135,
+      "pr_auc": 0.22567104980848002,
+      "gini": 0.395356691317827,
+      "ks": 0.3083056842820607,
+      "brier": 0.09256797874395353,
+      "log_loss": 0.3239124838494192,
+      "ece": 0.03257654088406891,
+      "mce": 0.10207479705472533,
+      "calibration_slope": 1.7802140053186977,
+      "calibration_intercept": 1.5852574078081354,
+      "observed_expected_ratio": 0.9908902456237322,
+      "extras": {}
+    }
+  },
+  "calibration": {
+    "identity": {
+      "n": 5009,
+      "positive_rate": 0.10840487123178279,
+      "mean_prediction": 0.1074173294816703,
+      "roc_auc": 0.6976783456589135,
+      "pr_auc": 0.22567104980848002,
+      "gini": 0.395356691317827,
+      "ks": 0.3083056842820607,
+      "brier": 0.09256797874395353,
+      "log_loss": 0.3239124838494192,
+      "ece": 0.03257654088406891,
+      "mce": 0.10207479705472533,
+      "calibration_slope": 1.7802140053186977,
+      "calibration_intercept": 1.5852574078081354,
+      "observed_expected_ratio": 0.9908902456237322,
+      "extras": {}
+    },
+    "platt": {
+      "n": 5009,
+      "positive_rate": 0.10840487123178279,
+      "mean_prediction": 0.11313291500746997,
+      "roc_auc": 0.6976783456589135,
+      "pr_auc": 0.22567104980848002,
+      "gini": 0.395356691317827,
+      "ks": 0.3083056842820607,
+      "brier": 0.09157964032748239,
+      "log_loss": 0.31951298266161504,
+      "ece": 0.017938643933877292,
+      "mce": 0.05243727633852677,
+      "calibration_slope": 1.070836668913403,
+      "calibration_intercept": 0.08375272878168113,
+      "observed_expected_ratio": 1.0436146800597,
+      "extras": {}
+    },
+    "isotonic": {
+      "n": 5009,
+      "positive_rate": 0.10840487123178279,
+      "mean_prediction": 0.11358548009993466,
+      "roc_auc": 0.6902992860318066,
+      "pr_auc": 0.20684310635894482,
+      "gini": 0.38059857206361314,
+      "ks": 0.27659154207068093,
+      "brier": 0.09179587170627146,
+      "log_loss": 0.31980552474199886,
+      "ece": 0.01137709000432434,
+      "mce": 0.05296141733393822,
+      "calibration_slope": 0.9656214180285985,
+      "calibration_intercept": -0.11960772321031113,
+      "observed_expected_ratio": 1.0477894471833753,
+      "extras": {}
+    }
+  }
+}

@@ -1,0 +1,4 @@
+_base_: ../models/logistic.yaml
+experiment:
+  id: EXP01
+  question: "Does non-linear modelling improve default prediction over logistic regression?"

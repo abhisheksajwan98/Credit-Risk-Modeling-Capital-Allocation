@@ -1,0 +1,107 @@
+{
+  "run_name": "exp06_rl",
+  "seed": 42,
+  "config": {
+    "economics": {
+      "annual_cost_of_funds": 0.03,
+      "opex_fixed": 150.0,
+      "opex_variable_rate": 0.01,
+      "manual_review_cost": 75.0,
+      "weighted_average_life_years": 1.55,
+      "fallback_good_yield": 0.16,
+      "fallback_bad_loss_rate": 0.63
+    },
+    "actions": {
+      "include_review": false,
+      "max_exposure": 40000.0
+    },
+    "simulation": {
+      "n_steps": 1200,
+      "capital_budget": null,
+      "review_information_gain": 0.15,
+      "review_signal_noise": 0.45,
+      "pd_exposure_elasticity": 0.15
+    },
+    "evaluation": {
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "n_bootstrap": 10000,
+      "baseline_policy": "expected_profit"
+    },
+    "policies": {
+      "fixed_threshold": {
+        "threshold": 0.15
+      },
+      "risk_band": {
+        "band_edges": [
+          0.05,
+          0.1,
+          0.18,
+          0.28
+        ]
+      },
+      "expected_profit": {
+        "min_profit": 0.0,
+        "capital_shadow_price": 0.0
+      }
+    },
+    "rl": {
+      "train_episodes": 400,
+      "bandit_episodes": 120,
+      "seed_offset": 10000,
+      "q_learning": {
+        "learning_rate": 0.15,
+        "gamma": 1.0,
+        "epsilon_start": 0.3,
+        "epsilon_end": 0.02,
+        "epsilon_decay_episodes": 200
+      },
+      "bandit": {
+        "alpha": 1.0,
+        "ridge_lambda": 1.0,
+        "reward_scale": 1000.0
+      }
+    },
+    "experiment": {
+      "id": "EXP06",
+      "question": "Can a budget-aware learned policy beat static policies on risk-adjusted return?"
+    },
+    "budget_sweep": {
+      "fractions": [
+        1.0,
+        0.6,
+        0.35,
+        0.2
+      ]
+    }
+  },
+  "data_source": "real",
+  "device": "cpu",
+  "notes": {},
+  "created_at": "2026-08-29T02:10:36.953739+00:00",
+  "python": "3.13.15",
+  "platform_": "Windows-11-10.0.26200-SP0",
+  "git_commit": "885af42",
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "lightgbm": "4.6.0",
+    "shap": "0.51.0",
+    "torch": "2.9.0+cu129",
+    "networkx": "3.6.1"
+  }
+}

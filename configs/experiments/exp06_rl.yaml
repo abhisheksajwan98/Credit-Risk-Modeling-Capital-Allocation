@@ -1,0 +1,14 @@
+_base_: ../simulation/base.yaml
+experiment:
+  id: EXP06
+  question: "Can a budget-aware learned policy beat static policies on risk-adjusted return?"
+  # The headline result is a *pair* of conditions. Unconstrained, RL should show no gain
+  # (the myopic rule is optimal). Constrained, it should. Reporting only the second would
+  # be misleading.
+budget_sweep:
+  # As a fraction of the capital that approving every applicant at medium exposure would need.
+  fractions: [1.00, 0.60, 0.35, 0.20]
+simulation:
+  n_steps: 1200
+rl:
+  train_episodes: 400

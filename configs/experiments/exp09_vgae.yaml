@@ -1,0 +1,23 @@
+_base_: ../graph/cohort_graph.yaml
+experiment:
+  id: EXP09
+  question: "Does relational uncertainty from a VGAE identify where the PD model fails?"
+  # A null result here is only interpretable if the model was trained to convergence.
+  # An earlier run used 10 epochs with no validation, which made "no signal" and
+  # "undertrained" indistinguishable.
+
+vgae:
+  latent_dim: 16
+  hidden_dim: 32
+  n_layers: 2
+  kl_weight: 0.0001
+  learning_rate: 0.005
+  max_epochs: 40
+  patience: 5           # early stopping on held-out link-prediction loss
+  batch_size: 1024
+  fanout: [10, 5]
+
+analysis:
+  n_bins: 5
+  n_strata: 10
+  min_per_half: 200

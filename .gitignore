@@ -1,0 +1,38 @@
+# Data — never commit raw or derived datasets
+data/raw/*
+data/interim/*
+data/processed/*
+!data/**/.gitkeep
+
+# Model artifacts
+artifacts/*
+!artifacts/.gitkeep
+
+# Results: keep tables/reports, ignore heavy figures cache
+results/figures/*.png
+results/figures/*.pdf
+!results/**/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Credentials — must never be committed
+kaggle.json
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

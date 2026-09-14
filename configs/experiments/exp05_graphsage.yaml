@@ -1,0 +1,6 @@
+_base_: ../graph/cohort_graph.yaml
+experiment:
+  id: EXP05
+  question: "Does GraphSAGE add value beyond graph-derived features?"
+gnn:
+  enabled: true

@@ -1,0 +1,46 @@
+# Lending simulator. Assumptions are catalogued in docs/ASSUMPTIONS.md.
+
+economics:
+  annual_cost_of_funds: 0.03
+  opex_fixed: 150.0
+  opex_variable_rate: 0.010
+  manual_review_cost: 75.0
+  weighted_average_life_years: 1.55
+  fallback_good_yield: 0.16
+  fallback_bad_loss_rate: 0.63
+
+actions:
+  include_review: false        # headline comparisons exclude review; see decision/policies.py
+  max_exposure: 40000.0
+
+simulation:
+  n_steps: 2000
+  capital_budget: null         # null = unconstrained; RL is expected to show no gain here
+  review_information_gain: 0.15
+  review_signal_noise: 0.45
+  pd_exposure_elasticity: 0.15
+
+evaluation:
+  seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  n_bootstrap: 10000
+  baseline_policy: expected_profit
+
+policies:
+  fixed_threshold: {threshold: 0.15}
+  risk_band: {band_edges: [0.05, 0.10, 0.18, 0.28]}
+  expected_profit: {min_profit: 0.0, capital_shadow_price: 0.0}
+
+rl:
+  train_episodes: 400
+  bandit_episodes: 120
+  seed_offset: 10000
+  q_learning:
+    learning_rate: 0.15
+    gamma: 1.0                 # finite, short horizon: no discounting
+    epsilon_start: 0.30
+    epsilon_end: 0.02
+    epsilon_decay_episodes: 200
+  bandit:
+    alpha: 1.0
+    ridge_lambda: 1.0
+    reward_scale: 1000.0

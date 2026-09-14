@@ -1,0 +1,4 @@
+_base_: ../models/boosting.yaml
+experiment:
+  id: EXP02
+  question: "Does calibration improve PD reliability, and at what cost to ranking?"

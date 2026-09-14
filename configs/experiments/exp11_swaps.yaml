@@ -1,0 +1,12 @@
+_base_: ../simulation/base.yaml
+experiment:
+  id: EXP11
+  question: "Does acting on blind-spot signals improve the book at equal capital?"
+  # Profit is read from observed cashflows. The comparison is portfolio-vs-portfolio at
+  # identical budget, and return on capital is the comparable quantity -- profit alone
+  # rewards whichever book deploys more capital.
+
+swaps:
+  flag_quantile: 0.90
+  budget_fraction: 0.80
+  exposure_cap: 0.5     # Policy C funds flagged borrowers at half exposure instead of refusing
